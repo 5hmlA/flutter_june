@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Flutter
+name: build
 
 # Controls when the workflow will run
 on:
@@ -36,18 +36,18 @@ jobs:
           java-version: '11'
       - run: echo "🖥️ The java setup succeed."
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      # 建立 Flutter 环境
-      - name: Flutter action
-        uses: subosito/flutter-action@v1.5.3
+      # 建立  环境
+      - name:  action
+        uses: subosito/-action@v1.5.3
         with:
-          flutter-version: "2.0.5"
+          -version: "2.0.5"
       # 下载项目依赖
-      - run: flutter pub get
+      - run:  pub get
       # 执行测试
-      # - run: flutter test
+      # - run:  test
       # 打包 APK
-      - run: flutter build apk --release
-      - run: echo "💡 flutter build succeed."
+      - run:  build apk --release
+      - run: echo "💡  build succeed."
       - name: Release apk
         uses: ncipollo/release-action@v1.5.0
         with:
