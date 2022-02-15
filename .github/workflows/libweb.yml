@@ -1,5 +1,5 @@
 # 为library编译flutter web 同时发布为github page 网页源码分支为gh-page，通过 user.github.io/repo/可以访问
-name: library_web
+name: lib web
 on:
   push:
     branches:
@@ -15,22 +15,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v1
-      - run: |
+      - name: build flutter web
+        run: |
           cd example
           flutter pub get
-# 1 需要替换 repo 为项目名字 否则发布的 githubpage 无法正常加载
-      - run: flutter build web --release --base-href /${{github.event.repository.name}}/
-      - run: |
-          cd build/web
+          flutter build web --release --base-href /${{github.event.repository.name}}/
+      - name: deploy github page
+        run: |
+          cd example/build/web
           git init
-          # type configurations: your user.email and user.name followed lines 
-          # git config --global user.email your_email 
-          # git config --global user.name your_name 
+          # type configurations: your user.email and user.name followed lines
+          # git config --global user.email your_email
+          # git config --global user.name your_name
           git config --global user.email jonas.jzy@gmail.com
           git config --global user.name ZuYun
           git status
-          # change this remote url for examle your remote url is https://github.com/onatcipli/flutter_web.git then the following:
-          # 2 需要替换 repo 为项目名字
           git remote add origin https://${{secrets.dev_secret}}@github.com/${{github.repository}}.git
           git checkout -b gh-pages
           git add --all
