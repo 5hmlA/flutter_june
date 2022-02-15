@@ -1,6 +1,6 @@
 # 编译apk 同时发布到release页面
 
-name: flutter build
+name: flib build
 
 # Controls when the workflow will run
 on:
@@ -49,12 +49,13 @@ jobs:
       # 下载项目依赖
       - name:  🍏 build apk
         run: |
+          cd example
           flutter pub get
           flutter build apk --release
       - run: echo "💡  build succeed."
       - name: 🖥️ Release apk
         uses: ncipollo/release-action@v1.5.0
         with:
-          artifacts: "build/app/outputs/apk/release/*.apk"
+          artifacts: "example/build/app/outputs/apk/release/*.apk"
           token: ${{ secrets.dev_secret }}
       - run: echo "🎉 The job finish release succeed."
