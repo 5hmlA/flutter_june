@@ -1,7 +1,7 @@
 
 name: publish
 
-# Controls when the workflow will run
+# 发布 flutter library 到 pub.dev
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
@@ -33,7 +33,7 @@ jobs:
       - name: Publish Dart/Flutter package
         uses: sakebook/actions-flutter-pub-publisher@v1.3.1
         with:
-          credential: ${{ secrets.CREDENTIAL }}
+          credential: ${{ secrets.dev_secret }}
           flutter_package: true
           skip_test: true
           dry_run: false
