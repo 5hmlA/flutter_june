@@ -30,11 +30,12 @@ jobs:
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       # 发布
-      - name: Publish Dart/Flutter package
+      - name: 💪 publish Dart/Flutter package
         uses: sakebook/actions-flutter-pub-publisher@v1.3.1
         with:
           credential: ${{ secrets.dev_secret }}
           flutter_package: true
           skip_test: true
           dry_run: false
+      - run: echo "✨ ⭐ 🌟 publish Dart/Flutter package success . 🚀"
 
