@@ -2,6 +2,8 @@
 name: flutter_web
 on:
   push:
+    tags:
+      - '*'
     branches:
       - main
       - master
