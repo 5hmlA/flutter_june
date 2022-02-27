@@ -6,8 +6,9 @@ name: flib build
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    tags:
-      - '*'
+    branches:
+      - main
+      - master
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -59,6 +60,7 @@ jobs:
       - run: echo "🎉 The job finish upload artifact succeed."
       - name: 🖥️ Release apk
         uses: ncipollo/release-action@v1.5.0
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           artifacts: "example/build/app/outputs/apk/release/*.apk"
           token: ${{ secrets.dev_secret }}
